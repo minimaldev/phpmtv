@@ -1,6 +1,6 @@
 <?php
 //add routers
-return = array(
+return array(
 	
 	'404'	=>	'error_404',
 	'500'	=>	'homepage',

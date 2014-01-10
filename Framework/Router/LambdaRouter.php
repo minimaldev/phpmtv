@@ -1,5 +1,5 @@
 <?php
-use Framework\Http\Request as Request;
+use \Framework\Http\Request as Request;
 namespace Framework\Router;
 	
 	class LambdaRouter

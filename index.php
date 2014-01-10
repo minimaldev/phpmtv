@@ -22,7 +22,7 @@ function prueba($name='a')
 	
 	header('Content-Type: text/html; charset=utf-8');
 	
-	$input = Request('hh','no name');	
+	$input = Request('hh',print_r($name));	
 	
 	printf('Hello %s', htmlspecialchars($input, ENT_QUOTES, 'UTF-8'));
 	
@@ -58,12 +58,9 @@ $server_pages=array(
 
 //verificamos si existe
 
-
-
-
 foreach ($routes as $pattern => $callback) 
 {
-	if (preg_match_all("#^{$pattern}$#", $uri, $params)) 
+	if (preg_match("#^{$pattern}$#", $uri, $params)) 
 	{
         array_shift($params);
         return call_user_func_array($callback, array_values($params));

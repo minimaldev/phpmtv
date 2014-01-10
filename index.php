@@ -21,6 +21,7 @@ function prueba($name='a')
 {
 	
 	header('Content-Type: text/html; charset=utf-8');
+	header("HTTP/1.1 200 OK");
 	
 	$input = Request('hh',$name);	
 	
@@ -30,12 +31,15 @@ function prueba($name='a')
 
 function homepage() 
 {
-	
+	header('Content-Type: text/html; charset=utf-8');
+	header("HTTP/1.1 200 OK");
     //print "HOMEPAGE";
 }
 
 function error_404() 
 {
+	header('Content-Type: text/html; charset=utf-8');
+	header("HTTP/1.1 404 Not Found");
     print "error 404";
 }
 
@@ -57,7 +61,7 @@ $server_pages=array(
 );
 
 //verificamos si existe
-
+$count_not_found=0;
 foreach ($routes as $pattern => $callback) 
 {
 	if (preg_match("#^{$pattern}$#", $uri, $params)) 
@@ -65,4 +69,11 @@ foreach ($routes as $pattern => $callback)
         array_shift($params);
         return call_user_func_array($callback, array_values($params));
     }
+    else
+    {
+    	$count_not_found++;
+    }
 }
+
+if (count ($routes) == $count_not_found)
+	call_user_func($server_pages['404']);

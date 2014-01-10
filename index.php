@@ -69,23 +69,36 @@ $server_pages=array(
 
 );
 
-//verificamos si existe
-$count_not_found=0;
-//recorre los routers
-foreach ($routes as $pattern => $callback) 
+///verificamos si index existe
+$script_name=explode('/', $_SERVER['REQUEST_URI']);
+
+if (!in_array(basename(__FILE__),$script_name))
 {
-	//busca la coincidencia
-	if (preg_match("#^{$pattern}$#",urldecode($uri), $params)) 
+
+	//verificamos si existe
+	$count_not_found=0;
+	//recorre los routers
+	foreach ($routes as $pattern => $callback) 
 	{
-		//pasa los parametros
-        array_shift($params);
-        return call_user_func_array($callback, array_values($params));
-    }
-    else
-    {
-    	$count_not_found++;
-    }
+		//busca la coincidencia
+		if (preg_match("#^{$pattern}$#",urldecode($uri), $params)) 
+		{
+			//pasa los parametros
+	        array_shift($params);
+	        return call_user_func_array($callback, array_values($params));
+	    }
+	    else
+	    {
+	    	$count_not_found++;
+	    }
+	}
+
+	if (count ($routes) == $count_not_found)
+		call_user_func($server_pages['404']);
+	}
+else
+{
+	call_user_func($server_pages['404']);
 }
 
-if (count ($routes) == $count_not_found)
-	call_user_func($server_pages['404']);
+

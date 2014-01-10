@@ -1,7 +1,7 @@
 <?php
 namespace Framework\Http\Response;
 use Framework\Http\Response\Base;
-{
+
 	class Response extends Base
 	{	
 		
@@ -14,4 +14,4 @@ use Framework\Http\Response\Base;
 	 	}
 
 	}
-}
+

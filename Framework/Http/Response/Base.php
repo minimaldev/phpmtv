@@ -1,7 +1,6 @@
 <?php
 namespace Framework\Http\Response;
 
-{
 	class Base
 	{	
 		protected $_headers;
@@ -59,4 +58,4 @@ namespace Framework\Http\Response;
 			
 		}
 	}
-}
+

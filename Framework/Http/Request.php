@@ -1,8 +1,6 @@
 <?php
 namespace Framework\Http;
 
-{
-
 	class Request
 	{
 		public function xssafe($data,$encoding='UTF-8')
@@ -28,4 +26,3 @@ namespace Framework\Http;
 		}
 	}
 
-}

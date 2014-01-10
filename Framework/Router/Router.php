@@ -1,7 +1,5 @@
 <?php
-namespace Framework
-
-{
+namespace Framework\Router;
 
 	class Router
 	{
@@ -53,4 +51,4 @@ namespace Framework
 		}
 
 	}
-}
+

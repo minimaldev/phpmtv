@@ -38,9 +38,10 @@ use Framework\Utils\ModuleResolver;
 			else
 			{
 			//obtenemos los routers
-			$routes = require_once CONFIG_PATH.'routes.php';
-			$uri = $this->_request->get('_url','/');
-
+			$routes 		 = require_once CONFIG_PATH.'routes.php';
+			$uri 			 = $this->_request->get('_url','/');
+			$count_not_found = 0;
+			
 			foreach ($routes as $pattern => $callback) 
 			{
 				//busca la coincidencia

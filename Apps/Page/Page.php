@@ -12,8 +12,7 @@ function prueba($name='a')
 	
 	return new ViewResponse(
 		BASE_PATH.DS.'views/name.php',
-		array("name"=>"hola"),
-		404
+		array("name"=>"hola")
 	);
 	
 	

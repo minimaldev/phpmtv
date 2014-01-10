@@ -22,7 +22,7 @@ function prueba($name='a')
 	
 	header('Content-Type: text/html; charset=utf-8');
 	
-	$input = Request('hh',print_r($name));	
+	$input = Request('hh',$name);	
 	
 	printf('Hello %s', htmlspecialchars($input, ENT_QUOTES, 'UTF-8'));
 	
@@ -65,16 +65,4 @@ foreach ($routes as $pattern => $callback)
         array_shift($params);
         return call_user_func_array($callback, array_values($params));
     }
-}
-//if (array_key_exists($uri, $pattern)) 
-{
-	//llamamos a la function
-
-
-	//call_user_func ( $pattern[$uri]);
-}
-//else
-{	
-	//si no se consigue llamamos error 404
-//	call_user_func ( $server_pages['404']);
 }

@@ -6,10 +6,10 @@ namespace Framework\Http\Response;
 	{	
 		protected $_headers;
 	 	
-	 	public function __construct($content='',$code=200,$type="text/html",$charset="utf-8")
+	 	public function __construct($content='',$status=200,$type="text/html",$charset="utf-8")
 	 	{
 	 		header("Content-Type: {$type}; charset={$charset}");
-	 		switch ($code)
+	 		switch ($status)
 	 		{
 	 			case 404:
 	 				header("HTTP/1.1 404 Not Found");

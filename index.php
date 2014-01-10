@@ -7,4 +7,4 @@ define('FRAMEWORK_PATH',BASE_PATH.DS.'Framework'.DS);
 require FRAMEWORK_PATH .'Autoloader.php';
 
 use Framework\Http\Response\ViewResponse;
-new ViewResponse(BASE_PATH.DS.'views/name.php',array("name"=>"hola"));
+new ViewResponse(BASE_PATH.DS.'views/name.php',array("name"=>"hola"),404);

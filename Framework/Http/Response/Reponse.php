@@ -6,9 +6,9 @@ use Framework\Http\Response\Base;
 	{	
 		
 	 	
-	 	public function __construct($content='',$code=200,$type="text/html",$charset="utf-8")
+	 	public function __construct($content='',$status=200,$type="text/html",$charset="utf-8")
 	 	{
-	 		parent::__construct($content,$code,$type,$charset);
+	 		parent::__construct($content,$status,$type,$charset);
 
 	 		print htmlspecialchars($content, ENT_QUOTES, 'UTF-8');
 	 	}

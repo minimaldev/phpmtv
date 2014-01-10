@@ -69,12 +69,11 @@ $server_pages=array(
 
 );
 
-///verificamos si index existe
+///verificamos si index.php existe
 $script_name=explode('/', $_SERVER['REQUEST_URI']);
 
 if (!in_array(basename(__FILE__),$script_name))
 {
-
 	//verificamos si existe
 	$count_not_found=0;
 	//recorre los routers
@@ -95,7 +94,8 @@ if (!in_array(basename(__FILE__),$script_name))
 
 	if (count ($routes) == $count_not_found)
 		call_user_func($server_pages['404']);
-	}
+
+}
 else
 {
 	call_user_func($server_pages['404']);

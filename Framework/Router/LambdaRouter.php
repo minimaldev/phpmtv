@@ -22,7 +22,7 @@ use Framework\Utils\ModuleResolver;
 		protected function show404()
 		{
 			$server_pages = require_once CONFIG_PATH.'server_pages.php';
-			$module = ModuleResolvers::Resolve($server_pages['404']);
+			$module = ModuleResolver::Resolve($server_pages['404']);
 			include_once $module;	
 			call_user_func_array($server_pages['404']);
 		} 

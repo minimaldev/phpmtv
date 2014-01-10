@@ -1,6 +1,6 @@
 <?php
-
-	/*function autoload($class)
+/*
+	function autoload($class)
 	{
 		
 		$paths = explode(PATH_SEPARATOR, get_include_path());
@@ -31,27 +31,20 @@
 		}
 		
 		//throw new Exception("{$class} not found");
-	}*/
-
+	}
+*/
 function autoload($className)
 	{
 		
-		if (class_exists($className)) 
-		{
-        	return true;
-    	}   
- 			/*if (false !== ($lastNsPos = strripos($className, '\\'))) {
-                $namespace = substr($className, 0, $lastNsPos);
-                $className = substr($className, $lastNsPos + 1);
+		
+       		if (class_exists($className))
+       			return true;
 
-                $fileName = str_replace('\\', DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;
-            }*/
-       		
        		$fileName = str_replace('\\', DIRECTORY_SEPARATOR, $className) .".php";
 	
 		
 			$combined = BASE_PATH.DS.$fileName;
-			echo $fileName."<br>";
+			
 			
 			if (file_exists($combined))
 		
@@ -62,21 +55,10 @@ function autoload($className)
 				return true;
 		
 			}
-		
-		return false;
-		//throw new Exception("{$class} not found");
+	
+		throw new Exception("{$class} not found");
 	}
 
-	class Autoloader
-	{
-		
-		public static function autoload($class)
-		{
-			autoload($class);
-		}
-
-	}
 
 	spl_autoload_register('autoload');
-	spl_autoload_extensions('.php');
-	//spl_autoload_register(array('autoloader', 'autoload'));
+

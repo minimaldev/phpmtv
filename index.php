@@ -71,10 +71,13 @@ $server_pages=array(
 
 //verificamos si existe
 $count_not_found=0;
+//recorre los routers
 foreach ($routes as $pattern => $callback) 
 {
+	//busca la coincidencia
 	if (preg_match("#^{$pattern}$#",urldecode($uri), $params)) 
 	{
+		//pasa los parametros
         array_shift($params);
         return call_user_func_array($callback, array_values($params));
     }

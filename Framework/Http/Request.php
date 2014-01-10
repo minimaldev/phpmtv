@@ -1,6 +1,6 @@
 <?php
 namespace Framework\Http;
-
+defined('BASE_PATH') or die("error....");
 	class Request
 	{
 		public function xssafe($data,$encoding='UTF-8')

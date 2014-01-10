@@ -1,6 +1,6 @@
 <?php
-
 namespace Framework\Router;
+defined('BASE_PATH') or die("error....");
 use Framework\Http\Request;
 use Framework\Http\Response\ViewResponse;
 use Framework\Utils\ModuleResolver;
@@ -41,7 +41,7 @@ use Framework\Utils\ModuleResolver;
 			$routes 		 = require_once CONFIG_PATH.'routes.php';
 			$uri 			 = $this->_request->get('_url','/');
 			$count_not_found = 0;
-			
+
 			foreach ($routes as $pattern => $callback) 
 			{
 				//busca la coincidencia

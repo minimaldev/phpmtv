@@ -1,5 +1,6 @@
 <?php
 namespace Apps\Page\Page;
+defined('BASE_PATH') or die("error....");
 use Framework\Http\Request;
 use Framework\Http\Response\ViewResponse;
 

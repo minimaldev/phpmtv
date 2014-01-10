@@ -1,6 +1,6 @@
 <?php
 namespace Framework\Router;
-
+defined('BASE_PATH') or die("error....");
 	class Router
 	{
 

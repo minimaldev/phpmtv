@@ -3,7 +3,7 @@
 //app constants
 define('DS', DIRECTORY_SEPARATOR);
 
-//chdir(dirname(__DIR__));
+
 
 define('BASE_PATH', realpath(dirname(__FILE__)));
 define('FRAMEWORK_PATH',BASE_PATH.DS.'Framework'.DS);

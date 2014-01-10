@@ -1,4 +1,5 @@
 <?php
+defined('BASE_PATH') or die("error....");
 //database config mysql
 return array(
 	

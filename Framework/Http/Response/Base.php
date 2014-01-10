@@ -1,6 +1,6 @@
 <?php
 namespace Framework\Http\Response;
-
+defined('BASE_PATH') or die("error....");
 	class Base
 	{	
 		protected $_headers;

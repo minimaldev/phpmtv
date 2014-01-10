@@ -1,6 +1,6 @@
 <?php
 namespace Framework\Utils;
-
+defined('BASE_PATH') or die("error....");
 	class ModuleResolver
 	{
 		static public function Resolve($callback)

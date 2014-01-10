@@ -1,5 +1,6 @@
 <?php
 namespace Framework\Http\Response;
+defined('BASE_PATH') or die("error....");
 use Framework\Http\Response\Base;
 
 	class Response extends Base

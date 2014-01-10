@@ -1,5 +1,5 @@
 <?php
-//database config mysql
+defined('BASE_PATH') or die("error....");
 return array(
 
 	'enable' 	=>  false,

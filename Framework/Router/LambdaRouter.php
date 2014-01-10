@@ -24,7 +24,7 @@ use Framework\Utils\ModuleResolver;
 			$server_pages = require_once CONFIG_PATH.'server_pages.php';
 			$module = ModuleResolver::Resolve($server_pages['404']);
 			include_once $module;	
-			call_user_func_array($server_pages['404']);
+			call_user_func($server_pages['404']);
 		} 
 
 		public function Run()

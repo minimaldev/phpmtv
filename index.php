@@ -1,6 +1,7 @@
 <?php
 
 
+
 //protejer contra xss
 function xssafe($data,$encoding='UTF-8')
 {
@@ -29,7 +30,8 @@ function prueba($name='a')
 
 function homepage() 
 {
-    print "HOMEPAGE";
+	
+    //print "HOMEPAGE";
 }
 
 function error_404() 
@@ -39,10 +41,10 @@ function error_404()
 
 $uri = Request('_url','/');
 
-$patterns=array(
+$routes=array(
 	
 	'/test'			=>	'prueba',
-	'/test/{name}'	=>	'prueba',
+	'/test/(\w+)'	=>	'prueba',
 	'/'				=>	'homepage',
 
 );
@@ -56,14 +58,26 @@ $server_pages=array(
 
 //verificamos si existe
 
-if (array_key_exists($uri, $patterns)) 
+
+
+
+foreach ($routes as $pattern => $callback) 
+{
+	if (preg_match_all("#^{$pattern}$#", $uri, $params)) 
+	{
+        array_shift($params);
+        return call_user_func_array($callback, array_values($params));
+    }
+}
+//if (array_key_exists($uri, $pattern)) 
 {
 	//llamamos a la function
-	call_user_func ( $patterns[$uri]);
+
+
+	//call_user_func ( $pattern[$uri]);
 }
-else
+//else
 {	
 	//si no se consigue llamamos error 404
-	call_user_func ( $server_pages['404']);
+//	call_user_func ( $server_pages['404']);
 }
-

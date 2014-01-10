@@ -10,11 +10,11 @@ function xssafe($data,$encoding='UTF-8')
 
 function sanitize($string = '', $is_filename = FALSE)
 {
- // Replace all weird characters with dashes
- $string = preg_replace('/[^\w\-'. ($is_filename ? '~_\.' : ''). ']+/u', '-', $string);
+ 	// Replace all weird characters with dashes
+ 	$string = preg_replace('/[^\w\-'. ($is_filename ? '~_\.' : ''). ']+/u', '-', $string);
 
- // Only allow one dash separator at a time (and make string lowercase)
- return mb_strtolower(preg_replace('/--+/u', '-', $string), 'UTF-8');
+ 	// Only allow one dash separator at a time (and make string lowercase)
+ 	return mb_strtolower(preg_replace('/--+/u', '-', $string), 'UTF-8');
 }
 
 function Request($item,$default='')

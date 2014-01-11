@@ -63,7 +63,7 @@ use Framework\Utils\ModuleResolver;
 			    //seteamos la funcion
 			    $callback = $this->_routes[$pattern];
 			   	//cargamos el modulo que sea con el pattern
-			    $module = ModuleResolver::Resolve($callback);
+			    $module   = ModuleResolver::Resolve($callback);
 			    include_once  $module;			        
 			        
 			    call_user_func_array($callback, array_values($params));

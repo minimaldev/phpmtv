@@ -5,12 +5,11 @@ use Framework\Http\Response\Base;
 	class ViewResponse extends Base
 	{	
 
-
-	 	public function __construct($view,$content='',$status=200,$type="text/html",$charset="utf-8")
+	 	public function __construct($view, $content = '', $status = 200, $type = "text/html", $charset = "utf-8")
 	 	{
 	 		parent::__construct($content,$status,$type,$charset);
 	 		
-	 		if (file_exists($view))
+	 		if ( file_exists($view) )
 	 		{
 	 			extract($content);
 
@@ -21,7 +20,7 @@ use Framework\Http\Response\Base;
 	 		}
 	 		 else 
         	{
-            	throw new Exception("no template file {$view} present in directory " );
+            	throw new Exception("no template file {$view} present in directory" );
         	}
 	 	}
 

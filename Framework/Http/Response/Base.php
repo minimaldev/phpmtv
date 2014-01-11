@@ -4,7 +4,7 @@ namespace Framework\Http\Response;
 	{	
 		protected $_headers;
 	 	
-	 	public function __construct($content='',$status=200,$type="text/html",$charset="utf-8")
+	 	public function __construct($content = '', $status = 200, $type = "text/html", $charset = "utf-8")
 	 	{
 	 		header("Content-Type: {$type}; charset={$charset}");
 	 		switch ($status)
@@ -15,28 +15,22 @@ namespace Framework\Http\Response;
 	 		 	default:
 	 				header("HTTP/1.1 200 OK");
 	 		}
-
 	 		
 	 	}
 
 	 	public function add($item)
-	 	{
-			
+	 	{			
 			array_push($this->_headers,$item);
-			return $this;
-			
+			return $this;			
 		}
 
 		public function remove($header)
-
 		{
 
-			foreach ($this->_headers as $i => $stored)
-
+			foreach ( $this->_headers as $i => $stored )
 			{
 
-				if ($stored == $header)
-
+				if ( $stored == $header )
 				{
 
 					unset($this->_headers[$i]);
@@ -47,10 +41,11 @@ namespace Framework\Http\Response;
 
 			return $this;
 
-		}	
+		}
+
 		public function getHeaders()
 		{
-			foreach ($this->_headers as $i => $stored)
+			foreach ( $this->_headers as $i => $stored )
 			{
 				header($stored);
 			}

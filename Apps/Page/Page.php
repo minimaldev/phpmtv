@@ -6,15 +6,13 @@ use Framework\Http\Response\ViewResponse;
 function prueba($name='a') 
 {
 	
-	
-	$req = new Request;
-	$input = $req->get('hh',$name);	
+	$req 	= new Request;
+	$input 	= $req->get('hh',$name);	
 	
 	return new ViewResponse(
 		BASE_PATH.DS.'views/name.php',
 		array("name"=>"hola")
 	);
-	
 	
 }
 

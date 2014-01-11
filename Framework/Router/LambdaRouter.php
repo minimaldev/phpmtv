@@ -1,6 +1,5 @@
 <?php
 namespace Framework\Router;
-defined('BASE_PATH') or die("error....");
 use Framework\Http\Request;
 use Framework\Http\Response\ViewResponse;
 use Framework\Utils\ModuleResolver;

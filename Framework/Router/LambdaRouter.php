@@ -38,9 +38,7 @@ use Framework\Utils\ModuleResolver;
 			$showPage = array_filter(array_keys($this->_routes),
 				array(__CLASS__, 'mapRoutes'));
 			
-			$isFile	  =in_array(ROOT_FILENAME,$this->_script_name); 
-
-			if (!$showPage  or $isFile )
+			if (!$showPage)
 			{
 				///mostramos error si pone index.php o nombre del archivo principal
 				///o mostramos error si la pagina no se encuentra
@@ -51,8 +49,13 @@ use Framework\Utils\ModuleResolver;
 		}
 		 protected function mapRoutes($pattern)
 		{
-		
-			if ( preg_match("#^{$pattern}$#",urldecode($this->_uri), $params) ) 
+			$isFile	 =  in_array(ROOT_FILENAME,$this->_script_name);
+			$macth   =  preg_match("#^{$pattern}$#",
+									urldecode($this->_uri), 
+									$params
+								); 
+
+			if ( $isFile == false and $macth == true) 
 			{	
 				//pasa los parametros
 			    array_shift($params);

@@ -65,7 +65,7 @@ use Framework\Utils\ModuleResolver;
 			   	//cargamos el modulo que sea con el pattern
 			    $module   = ModuleResolver::Resolve($callback);
 			    include_once  $module;			        
-			        
+			    //llamamos a la funcion o la vista    
 			    call_user_func_array($callback, array_values($params));
 			    return true;
 			}

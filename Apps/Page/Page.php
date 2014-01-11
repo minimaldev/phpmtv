@@ -3,7 +3,7 @@ namespace Apps\Page\Page;
 use Framework\Http\Request;
 use Framework\Http\Response\ViewResponse;
 
-function prueba($name='a') 
+function prueba($name = 'a') 
 {
 	
 	$req 	= new Request;

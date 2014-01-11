@@ -37,11 +37,10 @@ use Framework\Utils\ModuleResolver;
 
 			$showPage = array_filter(array_keys($this->_routes),
 				array(__CLASS__, 'mapRoutes'));
-			
+
 			if (!$showPage)
 			{
-				///mostramos error si pone index.php o nombre del archivo principal
-				///o mostramos error si la pagina no se encuentra
+				//si la pagina no se encuentra muestra error 404
 				$this->show404();
 			}
 			
@@ -49,7 +48,9 @@ use Framework\Utils\ModuleResolver;
 		}
 		 protected function mapRoutes($pattern)
 		{
+			///chequeamos si es index file
 			$isFile	 =  in_array(ROOT_FILENAME,$this->_script_name);
+			// comprobamos si existe en el router
 			$macth   =  preg_match("#^{$pattern}$#",
 									urldecode($this->_uri), 
 									$params

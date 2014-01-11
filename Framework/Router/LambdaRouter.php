@@ -35,24 +35,18 @@ use Framework\Utils\ModuleResolver;
 		public function Run()
 		{
 
-			if ( in_array(ROOT_FILENAME,$this->_script_name) )
+			$showPage = array_filter(array_keys($this->_routes),
+				array(__CLASS__, 'mapRoutes'));
+			
+			$isFile	  =in_array(ROOT_FILENAME,$this->_script_name); 
+
+			if (!$showPage  or $isFile )
 			{
 				///mostramos error si pone index.php o nombre del archivo principal
+				///o mostramos error si la pagina no se encuentra
 				$this->show404();
 			}
-			else
-			{
 			
-		
-			//busca la coincidencia en los routes
-			if ( !array_filter(array_keys($this->_routes),
-				array(__CLASS__, 'mapRoutes')) )
-			{
-				$this->show404();
-			}
-		
-
-			}
 
 		}
 		 protected function mapRoutes($pattern)

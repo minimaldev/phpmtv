@@ -8,6 +8,8 @@ use Framework\Utils\ModuleResolver;
 	{
 		protected $_request;
 		protected $_script_name;
+		protected $_uri;
+		protected $_routes = array();
 
 		public function __construct()
 		{
@@ -15,6 +17,10 @@ use Framework\Utils\ModuleResolver;
 			$this->_request 	= new Request;
 			//obtenemos el nombre del archivo root
 			$this->_script_name = explode('/', $_SERVER['REQUEST_URI']);
+
+			$this->_uri			= $this->_request->get('_url','/');
+			//obtenemos las urls
+			$this->_routes 		=	include_once CONFIG_PATH.'routes.php';
 			
 		}
 
@@ -36,36 +42,38 @@ use Framework\Utils\ModuleResolver;
 			}
 			else
 			{
-			//obtenemos los routers
-			$routes 		 = include_once CONFIG_PATH.'routes.php';
-			$uri 			 = $this->_request->get('_url','/');
-			$count_not_found = 0;
-
-			foreach ( $routes as $pattern => $callback ) 
+			
+		
+			//busca la coincidencia en los routes
+			if ( !array_filter(array_keys($this->_routes),
+				array(__CLASS__, 'mapRoutes')) )
 			{
-				//busca la coincidencia
-				if ( preg_match("#^{$pattern}$#",urldecode($uri), $params) ) 
-				{	
-					//pasa los parametros
-			        array_shift($params);
-			       
-			      	//cargamos el modulo que sea con el pattern
-			        $module = ModuleResolver::Resolve($callback);
-			        include_once  $module;			        
-			        
-			        return call_user_func_array($callback, array_values($params));
-			    }
-			    else
-			    {
-			    	$count_not_found++;
-			    }
-			}
-			//si no hay paginas que coicidan mostramos error 404
-			if ( count($routes) == $count_not_found )
 				$this->show404();
+			}
+		
 
 			}
 
 		}
-
+		 protected function mapRoutes($pattern)
+		{
+		
+			if ( preg_match("#^{$pattern}$#",urldecode($this->_uri), $params) ) 
+			{	
+				//pasa los parametros
+			    array_shift($params);
+			    //seteamos la funcion
+			    $callback = $this->_routes[$pattern];
+			   	//cargamos el modulo que sea con el pattern
+			    $module = ModuleResolver::Resolve($callback);
+			    include_once  $module;			        
+			        
+			    call_user_func_array($callback, array_values($params));
+			    return true;
+			}
+			else
+			{
+			  	return false;
+			}
+		}
 	}

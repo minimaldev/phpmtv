@@ -20,7 +20,7 @@
 		{	
 			//resolvedor de modulos forma foo.foo.functionname
 			$module_array 		= explode('.', $callback);
-			print 
+			
 			$method_function 	= $module_array[end(array_keys($module_array))];
 			
 			$filename 			= implode('.',

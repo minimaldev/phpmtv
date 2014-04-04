@@ -1,5 +1,5 @@
 <?php
-//namespace Apps\Page\Views;
+namespace Apps\Page\Views;
 use Framework\Http\Request;
 use Framework\Http\Response\ViewResponse;
 
@@ -8,7 +8,7 @@ function prueba($name = 'a')
 		
 	return new ViewResponse(
 		BASE_PATH.DS.'views/name.php',
-		array("name"=>"hola")
+		array("name" => $name)
 	);
 	
 }
@@ -24,7 +24,7 @@ function error_404()
 {
 	return new ViewResponse(
 		BASE_PATH.DS.'views/name.php',
-		array("name"=>"error 404 not found"),
+		array("name" => "error 404 not found"),
 		404
 	);
 }

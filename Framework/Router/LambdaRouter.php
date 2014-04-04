@@ -57,8 +57,7 @@ use Framework\Utils\ModuleResolver;
 				  	//resolve namespacing autoloading
 				    //llamamos a la funcion o la vista 
 				    $params = array_values($pattern->get_parameters($this->_uri));
-				    
-				    call_user_func_array($method,  $params );
+				    call_user_func_array($namespace . $method,  $params );
 					return true;				
 				}
 	

@@ -33,7 +33,7 @@
 			
 			return array(
 				'file' => str_replace('.', DIRECTORY_SEPARATOR, $filename).'.php',
-				'namespace' => str_replace('.', '\\', $filename),
+				'namespace' => str_replace('.', '\\', $filename).'\\',
 				'method' => $method_function
 			);
 		}

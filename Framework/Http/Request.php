@@ -20,8 +20,15 @@ namespace Framework\Http;
 
 	 	public function get($item, $default = '')
 	 	{
+
 			if ( isset($_REQUEST[$item]) )
-				return $this->xssafe($_REQUEST[$item]);
+
+			{
+				$uri =  substr($_REQUEST[$item], 1);
+				
+				return $this->xssafe($uri);			
+			}
+
 			else
 				return $this->xssafe($default);
 		}

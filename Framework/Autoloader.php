@@ -7,7 +7,7 @@
        			return true;
 
        		$fileName = str_replace('\\', DS, $className).".php";		
-			$combined = BASE_PATH.DS.$fileName;
+			$combined = BASE_PATH . DS . $fileName;
 			
 			
 			if ( file_exists($combined) )		

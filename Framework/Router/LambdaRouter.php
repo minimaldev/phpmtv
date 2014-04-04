@@ -23,55 +23,47 @@ use Framework\Utils\ModuleResolver;
 			$this->_routes 		=	include_once CONFIG_PATH.'routes.php';
 			
 		}
-
 		protected function show404()
 		{
-			$server_pages 	= include_once CONFIG_PATH.'server_pages.php';
-			$module 		= ModuleResolver::Resolve($server_pages['404']);
-			include_once $module;	
-			call_user_func($server_pages['404']);
+			echo "404";
 		} 
+
 
 		public function Run()
 		{
 
-			$showPage = array_filter(array_keys($this->_routes),
-				array(__CLASS__, 'mapRoutes'));
-
+			$showPage = array_filter(
+				$this->_routes,
+				array(__CLASS__, 'mapRoutes')
+			);
 			if (!$showPage)
 			{
 				//si la pagina no se encuentra muestra error 404
 				$this->show404();
 			}
-			
 
 		}
 		 protected function mapRoutes($pattern)
 		{
-			///chequeamos si es index file
-			$isFile	 =  in_array(ROOT_FILENAME,$this->_script_name);
-			// comprobamos si existe en el router
-			$macth   =  preg_match("#^{$pattern}$#",
-									urldecode($this->_uri), 
-									$params
-								); 
-
-			if ( $isFile == false and $macth == true) 
-			{	
-				//pasa los parametros
-			    array_shift($params);
-			    //seteamos la funcion
-			    $callback = $this->_routes[$pattern];
-			   	//cargamos el modulo que sea con el pattern
-			    $module   = ModuleResolver::Resolve($callback);
-			    include_once  $module;			        
-			    //llamamos a la funcion o la vista    
-			    call_user_func_array($callback, array_values($params));
-			    return true;
-			}
-			else
+			///chequeamos si es index file		
+			
+			if ($pattern->is_this($this->_uri) == true)
 			{
-			  	return false;
+				list($file,$namespace, $method) = array_values($pattern->get_controller()); 
+				$file = BASE_PATH . DS . $file;
+				if ( file_exists($file) )	
+				{
+					include_once $file;
+				  	//resolve namespacing autoloading
+				    //llamamos a la funcion o la vista 
+				    $params = array_values($pattern->get_parameters($this->_uri));
+				    
+				    call_user_func_array($method,  $params );
+					return true;				
+				}
+	
 			}
+			// comprobamos si existe en el router
+			return false;
 		}
 	}

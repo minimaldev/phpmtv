@@ -1,9 +1,8 @@
 <?php
-
+use Framework\Router\Pattern;
 return array(
-	
-	'/test'			=>	'Apps\\Page\\Page\\prueba',
-	'/test/(\w.*)/'	=>	'Apps\\Page\\Page\\prueba',
-	'/'				=>	'Apps\\Page\\Page\\homepage',
-
+	new Pattern("^test/$", 'Apps.Page.Views.prueba', 'rss_home'),
+	new Pattern("^test/(?P<name>\w+)/$", 'Apps.Page.Views.prueba', 'rss_home'),
+	new Pattern("^/$", 'Apps.Page.Views.homepage', 'homepage'),
+	//new Pattern("^(?P<name>\w+)/(?P<digit>\d+)/$", 'Apps.Page.prueba', 'rss_home'),
 );

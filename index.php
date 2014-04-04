@@ -9,9 +9,6 @@ define('ROOT_FILENAME', basename(__FILE__));
 
 //load the autloader
 require FRAMEWORK_PATH .'Autoloader.php';
-
-//use Framework\Http\Response\ViewResponse;
-//new ViewResponse(BASE_PATH.DS.'views/name.php',array("name"=>"hola"),404);
 use Framework\Router\LambdaRouter;
 $router = new LambdaRouter;
 $router->run();
